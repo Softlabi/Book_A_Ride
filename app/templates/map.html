@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='map.css') }}">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">OAU RIDE</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/book">Book a Ride</a></li>
+                <li><a href="/map">Map</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the map and set default options
+            const map = L.map('map').setView([51.505, -0.09], 13); // Default to London
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Try HTML5 geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const pos = [position.coords.latitude, position.coords.longitude];
+
+                        // Center the map on the user's location
+                        map.setView(pos, 13);
+
+                        // Add a marker at the user's location
+                        L.marker(pos).addTo(map)
+                            .bindPopup('You are here!')
+                            .openPopup();
+                    },
+                    function() {
+                        alert('Error: The Geolocation service failed.');
+                    }
+                );
+            } else {
+                // Browser doesn't support Geolocation
+                alert('Error: Your browser doesn\'t support geolocation.');
+            }
+        });
+    </script>
+</body>
+</html>

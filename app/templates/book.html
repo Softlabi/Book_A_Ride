@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Ride</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css7.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">OAU RIDE</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/book">Book a Ride</a></li>
+                <li><a href="/map">Map</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Book a Ride</h1>
+                <p>Fill in the details below to book a ride.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="booking-form-container">
+        <div class="container">
+            <form action="{{ url_for('main.submit_booking') }}" method="POST">
+                <label for="present_location">Present Location:</label>
+                <input type="text" id="present_location" name="present_location" required>
+
+                <label for="end_location">End Location:</label>
+                <input type="text" id="end_location" name="end_location" required>
+
+                <label for="ride_time">Time for the Ride:</label>
+                <input type="datetime-local" id="ride_time" name="ride_time" required>
+
+                <label for="car_size">Car Size:</label>
+                <select id="car_size" name="car_size" required>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+
+                <button type="submit" class="btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js.js') }}"></script>
+</body>
+</html>

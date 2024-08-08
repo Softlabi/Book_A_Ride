@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css5.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="profile-section">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Icon" class="profile-icon">
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Drive Requests</h1>
+        <table class="requests-table">
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Client Location</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Row -->
+                <tr>
+                    <td>Alabi Abigail</td>
+                    <td>OAU Hostel One</td>
+                    <td>08109457212</td>
+                    <td>abigailalabi0@gmail.com</td>
+                    <td>
+                        <a href="{{ url_for('main.ride_details', ride_id='123') }}" class="accept-btn">Accept</a>
+                        <button class="decline-btn">Decline</button>
+                    </td>
+                </tr>
+                <!-- Repeat rows as needed -->
+                <tr>
+                    <td>Oluwatope</td>
+                    <td>Male Hostel</td>
+                    <td>0908884331</td>
+                    <td>Tundefeyi@gmail.com</td>
+                    <td>
+                        <a href="{{ url_for('main.ride_details', ride_id='123') }}" class="accept-btn">Accept</a>
+                        <button class="decline-btn">Decline</button>
+                    </td>
+                </tr>
+                <!-- Repeat rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <div class="past-clients-container">
+        <h1>Past Clients</h1>
+        <table class="past-clients-table">
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Client Location</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Ride Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Row -->
+                <tr>
+                    <td>Mary Johnson</td>
+                    <td>Boripe Hostel</td>
+                    <td>08012345678</td>
+                    <td>mary.johnson@gmail.com</td>
+                    <td>2024-08-01</td>
+                </tr>
+                <!-- Repeat rows as needed -->
+                <tr>
+                    <td>John Babatunde</td>
+                    <td>Main Street, OAU Hostel</td>
+                    <td>08123456789</td>
+                    <td>john.doe@gmail.com</td>
+                    <td>2024-08-02</td>
+                </tr>
+                <!-- Repeat rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal for ride details -->
+    <div id="rideDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Ride Details</h2>
+            <p><strong>Client Location:</strong> <span id="clientLocation"></span></p>
+            <p><strong>Distance:</strong> <span id="rideDistance"></span></p>
+            <p><strong>Estimated Time:</strong> <span id="estimatedTime"></span></p>
+            <p><strong>Price:</strong> <span id="ridePrice"></span></p>
+            <form action="{{ url_for('main.confirm_ride', ride_id='123') }}" method="post">
+                <button type="submit" class="confirm-btn">Confirm Ride</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js3.js') }}"></script>
+</body>
+</html>

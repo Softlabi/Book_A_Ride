@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">OAU RIDE</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/book">Book a Ride</a></li>
+                <li><a href="/map">Map</a></li>
+                <li><a href="/get-started">Get Started</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="text-content">
+                    <h1>Get a Ride</h1>
+                    <p>Quick, reliable rides at your fingertips.</p>
+                    <a href="/get-started" class="btn-get-started">Get Started</a>
+                </div>
+                <div class="image-content">
+                    <img src="{{ url_for('static', filename='images/car.png') }}" alt="Get a Ride">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

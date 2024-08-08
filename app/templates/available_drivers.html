@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Drivers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css8.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">OAU RIDE</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/book">Book a Ride</a></li>
+                <li><a href="/map">Map</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Available Drivers</h1>
+                <p>Choose a driver for your ride.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="drivers-container">
+        <div class="container">
+            <ul class="drivers-list">
+                {% for driver in drivers %}
+                <li class="driver-card">
+                    <h2>{{ driver.name }}</h2>
+                    <p>Phone: {{ driver.phone }}</p>
+                    <p>Car: {{ driver.car_description }}</p>
+                    <p>Price: ${{ driver.price }}</p>
+                    <form action="{{ url_for('main.confirm_driver', driver_id=driver.id) }}" method="POST">
+                        <button type="submit" class="btn">Confirm</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js.js') }}"></script>
+</body>
+</html>
